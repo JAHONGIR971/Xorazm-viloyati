@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xorazm Viloyati — Tarix, Madaniyat va Zamonaviylik</title>
+    <style>
+        :root {
+            --bg: #0b132b;
+            --surface: #1c2541;
+            --primary: #00b4d8;
+            --gold: #f4a261;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        header {
+            background: rgba(11, 19, 43, 0.92);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.25);
+            padding: 1rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        .logo span {
+            color: var(--gold);
+        }
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--gold);
+        }
+        .hero {
+            text-align: center;
+            padding: 5.5rem 6% 4rem;
+            background: linear-gradient(180deg, rgba(28, 37, 65, 0.7) 0%, var(--bg) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(244, 162, 97, 0.15);
+            color: var(--gold);
+            border: 1px solid rgba(244, 162, 97, 0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: var(--primary);
+        }
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--muted);
+            font-size: 1.15rem;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stat-box {
+            background: var(--surface);
+            padding: 1.4rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+        .stat-box h3 {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .stat-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+        section {
+            padding: 4rem 6%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 2.1rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--text);
+        }
+        h2 span {
+            color: var(--primary);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--surface);
+            padding: 1.8rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+        }
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        .tag {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            background: rgba(0, 180, 216, 0.15);
+            color: var(--primary);
+        }
+        .districts-wrap {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .district-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .district-item {
+            background: var(--bg);
+            border: 1px solid rgba(244, 162, 97, 0.35);
+            color: var(--text);
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+        }
+        .quiz-box {
+            background: linear-gradient(135deg, #1c2541, #243b55);
+            padding: 2.2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+        .btn {
+            background: linear-gradient(90deg, var(--primary), #0077b6);
+            color: white;
+            border: none;
+            padding: 0.85rem 1.8rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.04);
+        }
+        #fact-text {
+            margin-top: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-height: 32px;
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">XORAZM <span>VILOYATI</span></div>
+        <nav>
+            <a href="#obidalar">Obidalar</a>
+            <a href="#madaniyat">Madaniyat</a>
+            <a href="#tumanlar">Tumanlar</a>
+            <a href="#faktlar">Qiziqarli faktlar</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="badge">🏛️ Qadimiy sivilizatsiya va ilm-fan beshigi</div>
+        <h1>Buyuk <span>Xorazm</span> Vohasi</h1>
+        <p>O'zbekistonning shimoli-g'arbida, Amudaryoning quyi oqimida joylashgan, 2700 yildan ortiq boy tarixga va betakror me'moriy merosga ega go'zal o'lka.</p>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Urganch</h3>
+                <p>Ma'muriy markazi</p>
+            </div>
+            <div class="stat-box">
+                <h3>6 100 km²</h3>
+                <p>Umumiy maydoni</p>
+            </div>
+            <div class="stat-box">
+                <h3>~2 mln</h3>
+                <p>Aholi soni</p>
+            </div>
+            <div class="stat-box">
+                <h3>1938-yil</h3>
+                <p>Tashkil topgan yili (15-yanvar)</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="obidalar">
+        <h2>Mashhur <span>Tarixiy Obidalar</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🏰 Ichan Qal'a</h3>
+                <p>Xiva shahrining ichki qal'asi — Markaziy Osiyoda saqlanib qolgan yagona butun boshli qadimiy shahar-muzey. 1990-yilda YUNESKO Jahon merosi ro'yxatiga kiritilgan.</p>
+                <span class="tag">Xiva shahri</span>
+            </div>
+            <div class="card">
+                <h3>🗼 Kalta Minor</h3>
+                <p>Muhammad Aminxon madrasasi yonida qad rostlagan, moviy va yashil koshinlar bilan bezatilgan Xivaning eng mashhur ramziy minorasi.</p>
+                <span class="tag">XIX asr</span>
+            </div>
+            <div class="card">
+                <h3>🕌 Juma Masjidi</h3>
+                <p>213 ta o'ymakor yog'och ustunlar ustiga qurilgan noyob me'moriy inshoot. Ustunlarning eng qadimiylari X asrga oid.</p>
+                <span class="tag">Noyob me'morchilik</span>
+            </div>
+            <div class="card">
+                <h3>🏛️ Tosh Hovli Saroyi</h3>
+                <p>Olloqulixon davrida bunyod etilgan, hashamatli naqshlar, 160 dan ortiq xona va ichki hovlilarga ega muhtasham saroy majmuasi.</p>
+                <span class="tag">1830–1838 yillar</span>
+            </div>
+            <div class="card">
+                <h3>🕊️ Pahlavon Mahmud Maqbarasi</h3>
+                <p>Buyuk shoir, faylasuf va yengilmas polvon Pahlavon Mahmud sharafiga qurilgan, feruza gumbazli muqaddas ziyoratgoh.</p>
+                <span class="tag">Ziyoratgoh</span>
+            </div>
+            <div class="card">
+                <h3>🏜️ Tuproqqal'a va Ayozqal'a</h3>
+                <p>Qadimgi Xorazm davlatining qudratidan darak beruvchi, qumliklar bag'rida saqlanib qolgan antik mudofaa qal'alari.</p>
+                <span class="tag">Antik davr</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="madaniyat">
+        <h2>Allomalar, San'at va <span>Milliy Taomlar</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📚 Buyuk Allomalar</h3>
+                <p>Algebra fanining asoschisi <strong>Muhammad al-Xorazmiy</strong>, qomusiy olim <strong>Abu Rayhon Beruniy</strong>, Zamaxshariy va Najmiddin Kubro kabi mutafakkirlar shu zaminda yetishib chiqqan.</p>
+            </div>
+            <div class="card">
+                <h3>💃 Xorazm Lazgisi</h3>
+                <p>Jo'shqin ritm va hayotbaxsh harakatlarga boy afsonaviy raqs. 2019-yilda YUNESKOning nomoddiy madaniy merosi ro'yxatiga kiritilgan.</p>
+            </div>
+            <div class="card">
+                <h3>🍲 Xorazm Oshxonasi</h3>
+                <p>Tuxum barak, shivit oshi (yashil lag'mon), gumma, Xorazm palovi va Amudaryo balig'idan tayyorlanadigan taomlar o'ziga xos ta'mi bilan mashhur.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tumanlar">
+        <h2>Ma'muriy <span>Tuman va Shaharlar</span></h2>
+        <div class="districts-wrap">
+            <p style="text-align: center; color: var(--muted);">Xorazm viloyati tarkibiga 2 ta viloyat bo'ysunuvidagi shahar va 11 ta tuman kiradi:</p>
+            <div class="district-list">
+                <span class="district-item">Urganch shahri</span>
+                <span class="district-item">Xiva shahri</span>
+                <span class="district-item">Bog'ot tumani</span>
+                <span class="district-item">Gurlan tumani</span>
+                <span class="district-item">Qo'shko'pir tumani</span>
+                <span class="district-item">Shovot tumani</span>
+                <span class="district-item">Tuproqqal'a tumani</span>
+                <span class="district-item">Urganch tumani</span>
+                <span class="district-item">Xazorasp tumani</span>
+                <span class="district-item">Xiva tumani</span>
+                <span class="district-item">Xonqa tumani</span>
+                <span class="district-item">Yangiariq tumani</span>
+                <span class="district-item">Yangibozor tumani</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faktlar">
+        <div class="quiz-box">
+            <h3>💡 Xorazm haqida qiziqarli faktlar</h3>
+            <p style="color: var(--muted); margin-top: 0.5rem;">Tugmani bosing va voha haqidagi noyob ma'lumotlardan birini bilib oling:</p>
+            <div id="fact-text">"Algoritm" so'zi buyuk vatandoshimiz Al-Xorazmiy ismining lotincha talaffuzidan kelib chiqqan!</div>
+            <button class="btn" onclick="nextFact()">Keyingi qiziqarli fakt ➡️</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Xorazm Viloyati Haqida Ma'lumotnoma. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <script>
+        const facts = [
+            "\"Algoritm\" so'zi buyuk vatandoshimiz Al-Xorazmiy ismining lotincha talaffuzidan kelib chiqqan!",
+            "Xiva shahridagi Ichan Qal'a YUNESKO Jahon merosi ro'yxatiga Markaziy Osiyodan birinchi bo'lib kiritilgan obidadir.",
+            "Xorazm Lazgisi raqsi YUNESKO tomonidan insoniyatning nomoddiy madaniy merosi sifatida e'tirof etilgan.",
+            "Shivit oshi — xamiriga ko'kat (shivit) qo'shib tayyorlanadigan, faqat Xorazmga xos yashil rangli noyob taomdir.",
+            "Xorazm Ma'mun akademiyasi (XI asr) o'z davrining eng yirik ilm-fan markazlaridan biri bo'lgan."
+        ];
+        let index = 0;
+
+        function nextFact() {
+            index = (index + 1) % facts.length;
+            document.getElementById("fact-text").textContent = facts[index];
+        }
+    </script>
+
+</body>
+</html>
